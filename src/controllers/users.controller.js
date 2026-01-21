@@ -1,4 +1,4 @@
-import { login, logout } from "../services/users.service.js";
+import { login } from "../services/users.service.js";
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -14,5 +14,4 @@ const loginUser = async (req, res) => {
   }
 };
 
-const logoutUser = async(req, )
 export { loginUser };
