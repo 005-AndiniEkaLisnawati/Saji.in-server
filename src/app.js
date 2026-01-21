@@ -2,6 +2,7 @@ import express from 'express';
 import db from './config/db.js';
 import userRoutes from './routes/users.routes.js';
 import menuRoutes from './routes/menus.route.js';
+import customerRoutes from './routes/customer.route.js';
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 
 app.use('/', menuRoutes);
 app.use('/', userRoutes);
+app.use('/', customerRoutes);
 
 
 export default app;
