@@ -7,11 +7,9 @@ export const addMenu = async (req, res) => {
     const file = req.file;
 
     if (!menu_name || !price || !id_category) {
-      return res
-        .status(400)
-        .json({
-          message: "Field menu_name, price, dan id_category wajib diisi",
-        });
+      return res.status(400).json({
+        message: "Field menu_name, price, dan id_category wajib diisi",
+      });
     }
 
     let imageUrl = null;
@@ -29,12 +27,10 @@ export const addMenu = async (req, res) => {
         });
 
       if (uploadError) {
-        return res
-          .status(500)
-          .json({
-            message: "Gagal upload gambar ke Supabase",
-            error: uploadError.message,
-          });
+        return res.status(500).json({
+          message: "Gagal upload gambar ke Supabase",
+          error: uploadError.message,
+        });
       }
 
       const { data: publicUrlData } = supabase.storage
@@ -89,10 +85,18 @@ export const updateMenu = async (req, res) => {
     const { id_menu } = req.params;
     const file = req.file;
 
-    if (!req.body.menu_name && !req.body.price && !req.body.description && !file) {
+    if (
+      !req.body.menu_name &&
+      !req.body.price &&
+      !req.body.description &&
+      !file
+    ) {
       return res
         .status(400)
-        .json({ message: "Minimal satu field (menu_name, price, description, atau image) harus diupdate" });
+        .json({
+          message:
+            "Minimal satu field (menu_name, price, description, atau image) harus diupdate",
+        });
     }
 
     const oldMenu = await menuService.getMenuById(id_menu);
@@ -115,12 +119,10 @@ export const updateMenu = async (req, res) => {
         });
 
       if (uploadError) {
-        return res
-          .status(500)
-          .json({
-            message: "Gagal upload gambar ke Supabase",
-            error: uploadError.message,
-          });
+        return res.status(500).json({
+          message: "Gagal upload gambar ke Supabase",
+          error: uploadError.message,
+        });
       }
 
       const { data: publicUrlData } = supabase.storage
@@ -129,9 +131,8 @@ export const updateMenu = async (req, res) => {
       imageUrl = publicUrlData.publicUrl;
     }
 
-    const updateData = {...req.body, image: imageUrl};
+    const updateData = { ...req.body, image: imageUrl };
     const result = await menuService.updateMenu(id_menu, updateData);
-
 
     res.status(200).json({
       message: "Menu updated successfully",
@@ -149,9 +150,34 @@ export const updateMenu = async (req, res) => {
 export const deleteMenu = async (req, res) => {
   try {
     const { id_menu } = req.params;
+
+    const menu = await menuService.getMenuById(id_menu);
+
+    if (!menu) {
+      return res.status(404).json({ message: "Menu tidak ditemukan" });
+    }
+
+    if (menu.image) {
+      const fileName = menu.image.split("/").pop();
+      const filePath = `menus/${fileName}`;
+
+      const { error: storageError } = await supabase.storage
+        .from("Saji.in")
+        .remove([filePath]);
+
+      if (storageError) {
+        console.error("Gagal menghapus gambar di Storage:", storageError);
+        return res.status(500).json({
+          message: "Gagal menghapus gambar di Storage",
+          error: storageError.message,
+        });
+      }
+    }
+
     await menuService.deleteMenu(id_menu);
+
     res.status(200).json({
-      message: "Menu deleted successfully",
+      message: "Menu dan gambar berhasil dihapus",
     });
   } catch (error) {
     console.error("Error pada deleteMenu Controller:", error);
