@@ -1,4 +1,4 @@
-import { login } from "../services/users.service.js";
+import { login, logout } from "../services/users.service.js";
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -13,4 +13,6 @@ const loginUser = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+const logoutUser = async(req, )
 export { loginUser };
