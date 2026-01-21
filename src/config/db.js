@@ -13,4 +13,4 @@ const testConnection = async () => {
   }
 };
 
-export {prisma, testConnection};
+export default {prisma, testConnection};
