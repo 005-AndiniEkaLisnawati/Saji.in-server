@@ -6,7 +6,6 @@ import customerRoutes from './routes/customer.route.js';
 import tableRoutes from './routes/tables.route.js';
 import orderRoutes from './routes/orders.route.js';
 
-
 const app = express();
 db.testConnection();
 app.use(express.json());
@@ -20,8 +19,6 @@ app.use('/', userRoutes);
 app.use('/', customerRoutes);
 app.use('/', tableRoutes);
 app.use('/', orderRoutes);
-
-
 
 
 export default app;

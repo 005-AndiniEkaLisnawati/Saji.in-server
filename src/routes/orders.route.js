@@ -6,8 +6,10 @@ import {
     editOrder,
     deleteOne,
     getOrder,
-    updateOrderStatus
+    updateOrderStatus,
+    getBaristaQueue
 } from "../controllers/orders.controller.js";
+
 
 const router = express.Router();
 
@@ -17,6 +19,7 @@ router.put("/orders/:id_order", editOrder);
 router.delete("/orders/:id_order", deleteOne);
 router.get("/orders/:id_order", getOrder);
 router.patch("/orders/:id_order/status", updateOrderStatus);
+router.get("/barista/queue", authenticate, authorize(["barista", "admin"]), getBaristaQueue);
 
 
 export default router;
