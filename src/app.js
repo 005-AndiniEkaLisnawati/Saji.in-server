@@ -3,6 +3,7 @@ import db from './config/db.js';
 import userRoutes from './routes/users.routes.js';
 import menuRoutes from './routes/menus.route.js';
 import customerRoutes from './routes/customer.route.js';
+import tableRoutes from './routes/tables.route.js';
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 app.use('/', menuRoutes);
 app.use('/', userRoutes);
 app.use('/', customerRoutes);
+app.use('/', tableRoutes);
 
 
 export default app;
