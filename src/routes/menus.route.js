@@ -1,6 +1,6 @@
 import { addMenu, getMenus, updateMenu, deleteMenu } from "../controllers/menus.controller.js";
-import { upload } from "../middleware/upload.middleware.js";
-import { authenticate, authorize } from "../middleware/auth.middleware.js";
+import { upload } from "../middlewares/upload.middleware.js";
+import { authenticate, authorize } from "../middlewares/auth.middleware.js";
 import express from "express";
 const router = express.Router();
 
