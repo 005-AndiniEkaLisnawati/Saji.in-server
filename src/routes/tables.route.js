@@ -9,8 +9,8 @@ import {
 
 const router = express.Router();
 
-router.post("/tables", authenticate, authorize('admin'), addTable);
+router.post("/tables", authenticate, authorize(["admin", "barista"]), addTable);
 router.get("/tables", getTables);
-router.delete("/tables/:id_table", authenticate, authorize('admin'), removeTable);
+router.delete("/tables/:id_table", authenticate, authorize(["admin", "barista"]), removeTable);
 
 export default router;

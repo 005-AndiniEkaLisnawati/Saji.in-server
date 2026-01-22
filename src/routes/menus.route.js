@@ -4,9 +4,9 @@ import { authenticate, authorize } from "../middlewares/auth.middleware.js";
 import express from "express";
 const router = express.Router();
 
-router.post("/menus", authenticate, authorize(["admin"]), upload.single("image"), addMenu);
+router.post("/menus", authenticate, authorize(["admin", "barista"]), upload.single("image"), addMenu);
 router.get("/menus", getMenus);
-router.put("/menus/:id_menu", authenticate, authorize(["admin"]), upload.single("image"), updateMenu);
-router.delete("/menus/:id_menu", authenticate, authorize(["admin"]), deleteMenu);
+router.put("/menus/:id_menu", authenticate, authorize(["admin", "barista"]), upload.single("image"), updateMenu);
+router.delete("/menus/:id_menu", authenticate, authorize(["admin", "barista"]), deleteMenu);
 
 export default router;

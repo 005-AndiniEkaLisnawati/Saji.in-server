@@ -16,7 +16,7 @@ router.get("/orders", getOrders);
 router.put("/orders/:id_order", editOrder);
 router.delete("/orders/:id_order", deleteOne);
 router.get("/orders/:id_order", getOrder);
-router.patch("/orders/:id_order/status", authenticate, authorize(['admin', 'barista']), updateOrderStatus);
+router.patch("/orders/:id_order/status", updateOrderStatus);
 
 
 export default router;
