@@ -49,7 +49,7 @@ export const getOrderById = async (id_order) => {
         include: {
             table: true,
             customer: true,
-            items: {include: { menu: true }},
+            items: {include: { menu: { select: { menu_name: true } } }},
         },
     });
 }
