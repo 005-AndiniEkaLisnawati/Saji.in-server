@@ -11,7 +11,7 @@ db.testConnection();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
-  res.send('Database conected!');
+  res.send('Welcome to Saji.In Server!');
 });
 
 app.use('/', menuRoutes);
