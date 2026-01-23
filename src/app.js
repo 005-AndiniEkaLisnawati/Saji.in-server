@@ -21,6 +21,9 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+app.options('*', cors());
+
 app.use('/', menuRoutes);
 app.use('/', userRoutes);
 app.use('/', customerRoutes);
