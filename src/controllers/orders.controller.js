@@ -103,9 +103,9 @@ export const deleteOne = async (req, res) => {
 export const updateOrderStatus = async (req, res) => {
     const { id_order } = req.params;
     const { order_status } = req.body;
-    const validStatuses = ['pending', 'process', 'ready', 'served'];
+    const validStatuses = ['pending', 'processing', 'ready', 'served'];
     if (!validStatuses.includes(order_status)) {
-        throw new Error("Invalid status : use 'pending', 'process', 'ready', or 'served' instead.");
+        throw new Error("Invalid status : use 'pending', 'processing', 'ready', or 'served' instead.");
     }
     try {
         const updatedOrder = await updateStatus(id_order, order_status);
