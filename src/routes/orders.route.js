@@ -1,5 +1,4 @@
 import express from "express";
-import {authorize, authenticate} from "../middlewares/auth.middleware.js";
 import {
     addOrder,
     getOrders,
