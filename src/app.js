@@ -5,15 +5,9 @@ import menuRoutes from './routes/menus.route.js';
 import customerRoutes from './routes/customer.route.js';
 import tableRoutes from './routes/tables.route.js';
 import orderRoutes from './routes/orders.route.js';
-import cors from 'cors';
+
 
 const app = express();
-app.use(cors({
-  origin: true, 
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
 
 db.testConnection();
 app.use(express.json());
