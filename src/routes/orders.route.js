@@ -6,7 +6,8 @@ import {
     deleteOne,
     getOrder,
     updateOrderStatus,
-    getBaristaQueue
+    getBaristaQueue,
+    getOrdersByCustomers
 } from "../controllers/orders.controller.js";
 
 
@@ -19,6 +20,7 @@ router.delete("/orders/:id_order", deleteOne);
 router.get("/orders/:id_order", getOrder);
 router.patch("/orders/:id_order/status", updateOrderStatus);
 router.get("/barista/queue", getBaristaQueue);
+router.get("/orders/customer/:id_customer", getOrdersByCustomers);
 
 
 export default router;

@@ -1,4 +1,4 @@
-import {createOrder, getAllOrders, getOrderById, updateOrder, deleteOrder, updateStatus, queueBarista} from "../services/orders.service.js";
+import {createOrder, getByCustomers, getAllOrders, getOrderById, updateOrder, deleteOrder, updateStatus, queueBarista} from "../services/orders.service.js";
 
 export const addOrder = async (req, res) => {
     const { id_table, id_customer, total_price, status, items } = req.body;
@@ -137,3 +137,20 @@ export const getBaristaQueue = async (req, res) => {
         });
     }
 };
+
+export const getOrdersByCustomers = async (req, res) => {
+    try {
+        const {id_customer} = req.params;
+        const orders = await getByCustomers(id_customer)
+        res.status(200).json({
+            message: "Orders by cust retrieved successfully",
+            data: orders,
+        })
+    } catch (error) {
+        console.error("Error pada get order by customer Controller:", error);
+        res.status(500).json({
+            message: "Internal Server Error",
+            error: error.message,
+        });
+    }
+}

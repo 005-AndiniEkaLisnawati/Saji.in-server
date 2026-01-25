@@ -78,3 +78,22 @@ export const queueBarista = async () => {
         },
     });
 }
+
+export const getByCustomers = async (id_customer) => {
+    return await prisma.order.findMany({
+        where: {
+            id_customer: parseInt(id_customer) 
+        },
+        include: {
+            items: {
+                include: {
+                    menu: true 
+                }
+            },
+            table: true 
+        },
+        orderBy: {
+            order_time: 'desc'
+        }
+    });
+};
