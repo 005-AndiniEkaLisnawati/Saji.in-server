@@ -66,7 +66,6 @@ export const updateStatus = async (id_order, status) => {
         data: { order_status: status },
     });
 }
-
 export const queueBarista = async () => {
     return await prisma.order.findMany({
         where: { order_status: { in: ['processing', 'ready'] } },
@@ -74,7 +73,15 @@ export const queueBarista = async () => {
         include: {
             table: true,
             customer: true,
-            items: true,
+            items: {
+                include: {
+                    menu: {
+                        select: {
+                            menu_name: true 
+                        }
+                    }
+                }
+            },
         },
     });
 }
