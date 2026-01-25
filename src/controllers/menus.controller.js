@@ -3,7 +3,7 @@ import * as menuService from "../services/menus.service.js";
 
 export const addMenu = async (req, res) => {
   try {
-    const { id_category, menu_name, price, description } = req.body;
+    const { id_category, menu_name, price, description, image } = req.body;
     const file = req.file;
 
     if (!menu_name || !price || !id_category) {
@@ -12,7 +12,7 @@ export const addMenu = async (req, res) => {
       });
     }
 
-    let imageUrl = null;
+    let imageUrl = image || null;
 
     if (file) {
       const fileExt = file.originalname.split(".").pop();
