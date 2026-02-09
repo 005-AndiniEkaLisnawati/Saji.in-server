@@ -5,6 +5,7 @@ import menuRoutes from './routes/menus.route.js';
 import customerRoutes from './routes/customer.route.js';
 import tableRoutes from './routes/tables.route.js';
 import orderRoutes from './routes/orders.route.js';
+import promoRoutes from './routes/promos.route.js';
 
 
 const app = express();
@@ -22,6 +23,7 @@ app.use('/', userRoutes);
 app.use('/', customerRoutes);
 app.use('/', tableRoutes);
 app.use('/', orderRoutes);
+app.use('/', promoRoutes)
 
 
 export default app;

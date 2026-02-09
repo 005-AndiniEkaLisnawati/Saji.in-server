@@ -107,6 +107,21 @@ model OrderItem {
   @@map("order_items")
 }
 
+model Promos {
+  id_promos   Int @id @default(autoincrement())
+  type        DiskonType
+  name        String
+  value       Int
+  is_active   Boolean
+
+  created_at  DateTime @default(now())
+}
+
+enum DiskonType {
+  FIXED
+  PERCENT
+}
+
 
 
         
